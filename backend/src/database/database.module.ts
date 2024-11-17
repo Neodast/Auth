@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { DRIZZLE } from './constants/drizzle.constant';
+import { DATABASE } from './constants/database.constant';
 import { ConfigService } from '@nestjs/config';
 import { Pool } from 'pg';
 import { drizzle, NodePgDatabase } from 'drizzle-orm/node-postgres';
@@ -10,7 +10,7 @@ import * as schema from './schemas/schema';
   controllers: [],
   providers: [
     {
-      provide: DRIZZLE,
+      provide: DATABASE,
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => {
         const pool = new Pool({
@@ -21,6 +21,6 @@ import * as schema from './schemas/schema';
       },
     },
   ],
-  exports: [DRIZZLE],
+  exports: [DATABASE],
 })
-export class DrizzleModule {}
+export class DatabaseModule {}

@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from './config/config.module';
-import { DrizzleModule } from './drizzle/drizzle.module';
-import { UsersModule } from './users/users.module';
+import { DatabaseModule } from './database/database.module';
+import { UserModule } from './user/user.module';
 
 @Module({
-  imports: [ConfigModule, UsersModule, DrizzleModule, AuthModule],
+  imports: [ConfigModule, UserModule, DatabaseModule, AuthModule],
   controllers: [],
   providers: [],
 })
