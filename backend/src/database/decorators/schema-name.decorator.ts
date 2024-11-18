@@ -1,5 +1,5 @@
 import { SetMetadata } from '@nestjs/common';
 
-export const ENTITY_NAME = 'entityName';
+export const SCHEMA_NAME = 'schemaName';
 
-export const EntityName = (name: string) => SetMetadata(ENTITY_NAME, name);
+export const SchemaName = (name: string) => SetMetadata(SCHEMA_NAME, name);
