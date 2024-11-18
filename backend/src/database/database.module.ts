@@ -1,26 +1,12 @@
 import { Module } from '@nestjs/common';
-import { DATABASE } from './constants/database.constant';
-import { ConfigService } from '@nestjs/config';
-import { Pool } from 'pg';
-import { drizzle, NodePgDatabase } from 'drizzle-orm/node-postgres';
-import * as schema from './schemas/schema';
+import { Repository } from './database.repository';
+import { databaseProvider } from './database.provider';
+import { Reflector } from '@nestjs/core';
 
 @Module({
   imports: [],
   controllers: [],
-  providers: [
-    {
-      provide: DATABASE,
-      inject: [ConfigService],
-      useFactory: async (configService: ConfigService) => {
-        const pool = new Pool({
-          connectionString: configService.get<string>('database.url'),
-          ssl: true,
-        });
-        return drizzle(pool, { schema }) as NodePgDatabase<typeof schema>;
-      },
-    },
-  ],
-  exports: [DATABASE],
+  providers: [databaseProvider, Reflector, Repository],
+  exports: [databaseProvider, Repository],
 })
 export class DatabaseModule {}
