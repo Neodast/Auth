@@ -6,11 +6,11 @@ export class CreateUserDto {
   })
   email: string;
 
+  @IsString()
+  username: string;
+
   @IsHash('SHA256', {
     message: 'Password incorrectly hashed',
   })
   password: string;
-
-  @IsString()
-  username: string;
 }

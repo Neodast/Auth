@@ -5,24 +5,18 @@ import { ConditionDto } from 'src/database/dtos/condition.dto';
 import { DatabaseParams } from 'src/database/dtos/db-params.dto';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UpdateUserDto } from './dtos/update-user.dto';
-import {
-  DEFAULT_LIMIT,
-  DEFAULT_OFFSET,
-} from 'src/database/constants/database.constant';
 import { UserDto } from './dtos/user.dto';
 
 @Injectable()
 @SchemaName('users')
 export class UserRepository extends Repository {
   public async findUsers(params?: DatabaseParams): Promise<UserDto[]> {
-    return this.find<UserDto>(
-      params ? params : { limit: DEFAULT_LIMIT, offset: DEFAULT_OFFSET },
-    );
+    return this.find<UserDto>(params);
   }
 
   public async findUserBy(conditions: ConditionDto[]): Promise<UserDto> {
     return this.findOne<UserDto>({
-      conditions: conditions,
+      conditions,
     });
   }
 

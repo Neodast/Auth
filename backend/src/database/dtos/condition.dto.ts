@@ -5,5 +5,5 @@ export class ConditionDto {
   key?: string;
 
   @IsString()
-  value?: string;
+  value?: string | number;
 }

@@ -21,6 +21,24 @@ export class UserService {
     ]);
   }
 
+  public async findByEmail(email: string): Promise<UserDto> {
+    return this.repository.findUserBy([
+      {
+        key: 'email',
+        value: email,
+      },
+    ]);
+  }
+
+  public async findById(id: string): Promise<UserDto> {
+    return this.repository.findUserBy([
+      {
+        key: 'id',
+        value: id,
+      },
+    ]);
+  }
+
   public async createUser(user: CreateUserDto): Promise<UserDto> {
     return this.repository.createUser(user);
   }

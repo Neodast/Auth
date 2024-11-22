@@ -1,9 +1,13 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { DATABASE } from './constants/database.constant';
+import {
+  DATABASE,
+  DEFAULT_LIMIT,
+  DEFAULT_OFFSET,
+} from './constants/database.constant';
 import { DrizzleDB } from './types/drizzle-db.type';
 import { Reflector } from '@nestjs/core';
 import { SCHEMA_NAME } from './decorators/schema-name.decorator';
-import { and, eq } from 'drizzle-orm';
+import { and, asc, desc, eq } from 'drizzle-orm';
 import { DatabaseParams } from './dtos/db-params.dto';
 import { ConditionDto } from './dtos/condition.dto';
 
@@ -35,6 +39,11 @@ export class Repository {
   }
 
   protected async find<Dto>(params: DatabaseParams): Promise<Dto[]> {
+    const orderBy =
+      params?.orderBy?.direction === 'desc'
+        ? desc(this.schema[params.orderBy.column])
+        : asc(this.schema[params?.orderBy?.column] || this.schema.id);
+
     return this.db
       .select()
       .from(this.schema)
@@ -43,9 +52,9 @@ export class Repository {
           ? this.conditionsToDrizzleStyle(params.conditions)
           : undefined,
       )
-      .orderBy()
-      .limit(params.limit)
-      .offset(params.offset) as Promise<Dto[]>;
+      .orderBy(orderBy)
+      .limit(params?.limit || DEFAULT_LIMIT)
+      .offset(params?.offset || DEFAULT_OFFSET) as Promise<Dto[]>;
   }
 
   protected async findOne<Dto>(params: DatabaseParams): Promise<Dto> {
