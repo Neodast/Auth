@@ -11,6 +11,7 @@ import { ConfigModule } from '@src/config/config.module';
 describe('User service', () => {
   let userController: UserController;
   let userService: UserService;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   let userRepository: UserRepository;
 
   beforeEach(async () => {
