@@ -11,8 +11,8 @@ import { UserService } from './user.service';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UpdateUserDto } from './dtos/update-user.dto';
 import { DeleteUserDto } from './dtos/delete-user.dto';
-import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
-import { UserPayloadDto } from 'src/auth/dtos/user-payload.dto';
+import { CurrentUser } from '@src/auth/decorators/current-user.decorator';
+import { UserPayloadDto } from '@src/auth/dtos/user-payload.dto';
 
 @Controller('users')
 export class UserController {
