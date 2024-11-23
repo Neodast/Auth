@@ -18,7 +18,7 @@ import { CookieHelper } from './helpers/cookie.helper';
 import { AccessToken } from './types/access-token.type';
 import { UserService } from 'src/user/user.service';
 import { AuthMapper } from './mappers/auth.mapper';
-import { TokenService } from './tokens/token.service';
+import { TokenService } from './token/token.service';
 
 @Injectable()
 export class AuthService {

@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { Repository } from 'src/database/database.repository';
-import { SchemaName } from 'src/database/decorators/schema-name.decorator';
+import { SchemaName } from '../../database/decorators/schema-name.decorator';
 import { TokenDto } from './dtos/token.dto';
 import { CreateTokenDto } from './dtos/create-token.dto';
 import { UpdateTokenDto } from './dtos/update-token.dto';
-import { ConditionDto } from 'src/database/dtos/condition.dto';
+import { Repository } from '@src/database/database.repository';
+import { ConditionDto } from '@src/database/dtos/condition.dto';
 
 @Injectable()
 @SchemaName('tokens')

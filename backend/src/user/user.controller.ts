@@ -11,6 +11,8 @@ import { UserService } from './user.service';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UpdateUserDto } from './dtos/update-user.dto';
 import { DeleteUserDto } from './dtos/delete-user.dto';
+import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
+import { UserPayloadDto } from 'src/auth/dtos/user-payload.dto';
 
 @Controller('users')
 export class UserController {
@@ -31,10 +33,13 @@ export class UserController {
     return await this.userService.createUser(user);
   }
 
-  // @Patch('/update')
-  // async updateUser(@Body() newData: UpdateUserDto, @CurrentUser() user: UserPayload) {
-  //   return await this.userService.updateUser(newData, currentUser.id);
-  // }
+  @Patch('/update')
+  async updateUser(
+    @Body() newData: UpdateUserDto,
+    @CurrentUser() user: UserPayloadDto,
+  ) {
+    return await this.userService.updateUser(newData, user.id);
+  }
 
   @Delete('delete')
   async deleteUser(@Body() user: DeleteUserDto) {
