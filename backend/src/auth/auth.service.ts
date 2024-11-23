@@ -1,3 +1,4 @@
+import { UserService } from './../user/user.service';
 import {
   ConflictException,
   Inject,
@@ -16,7 +17,6 @@ import { Logger } from 'winston';
 import { RefreshToken } from './types/refresh-token.type';
 import { CookieHelper } from './helpers/cookie.helper';
 import { AccessToken } from './types/access-token.type';
-import { UserService } from 'src/user/user.service';
 import { AuthMapper } from './mappers/auth.mapper';
 import { TokenService } from './token/token.service';
 

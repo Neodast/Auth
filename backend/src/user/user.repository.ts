@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { Repository } from 'src/database/database.repository';
-import { SchemaName } from 'src/database/decorators/schema-name.decorator';
-import { ConditionDto } from 'src/database/dtos/condition.dto';
-import { DatabaseParams } from 'src/database/dtos/db-params.dto';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UpdateUserDto } from './dtos/update-user.dto';
 import { UserDto } from './dtos/user.dto';
+import { Repository } from '../database/database.repository';
+import { DatabaseParams } from '../database/dtos/db-params.dto';
+import { ConditionDto } from '../database/dtos/condition.dto';
+import { SchemaName } from '../database/decorators/schema-name.decorator';
 
 @Injectable()
 @SchemaName('users')

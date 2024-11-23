@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { UserPayloadDto } from '../dtos/user-payload.dto';
-import { UserDto } from 'src/user/dtos/user.dto';
+import { UserDto } from '@src//user/dtos/user.dto';
 
 @Injectable()
 export class AuthMapper {
