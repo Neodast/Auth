@@ -27,24 +27,30 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+        working-directory: ./backend
 
       - name: Run lint
         run: npm run lint
+        working-directory: ./backend
 
       - name: Run unit tests
         run: npm run test
+        working-directory: ./backend
 
       - name: Run e2e tests
         run: npm run test:e2e
+        working-directory: ./backend
 
       - name: Check tests coverage
         run: npm run test:cov
+        working-directory: ./backend
 
       - name: Build project
         run: npm run build
+        working-directory: ./backend
 
       - name: Upload coverage report
         uses: actions/upload-artifact@v3
         with:
-          name: coverage-report
-          path: coverage
+          name: backend-coverage-report
+          path: backend/coverage
