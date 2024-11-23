@@ -41,6 +41,7 @@
     "pg": "^8.13.1",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1",
+    "uuid": "^11.0.3",
     "winston": "^3.17.0"
   },
   "devDependencies": {
@@ -80,14 +81,16 @@
       "ts"
     ],
     "moduleDirectories": [
-        "node_modules",
-        "src"
+      "node_modules",
+      "src"
     ],
     "rootDir": "src",
     "moduleNameMapper": {
       "@src/(.*)$": "<rootDir>/$1"
     },
-    "modulePaths": ["<rootDir>"],
+    "modulePaths": [
+      "<rootDir>"
+    ],
     "testRegex": ".*\\.spec\\.ts$",
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
