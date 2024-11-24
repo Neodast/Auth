@@ -7,6 +7,6 @@ export default defineConfig({
   schema: './src/database/schemas/schema.ts',
   dialect: 'postgresql',
   dbCredentials: {
-    url: 'postgres://neo:pass@localhost:5432/auth',
+    url: process.env.DATABASE_URL,
   },
 });
