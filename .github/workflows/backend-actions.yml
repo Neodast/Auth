@@ -44,7 +44,7 @@ jobs:
           done
 
       - name: Seed the Database
-        run: npx ts-node ./backend/src/database/seed.ts
+        run: npm run db:seed
         working-directory: ./backend
 
       - name: Run lint
