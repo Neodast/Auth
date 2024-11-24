@@ -2,11 +2,8 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { UserController } from '@src/user/user.controller';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
-import { DatabaseModule } from '@src/database/database.module';
-import { ConfigModule } from '@src/config/config.module';
-import { UserService } from '../src/user/user.service';
-import { UserRepository } from '../src/user/user.repository';
 import { UserDto } from '@src/user/dtos/user.dto';
+import { AppModule } from '@src/app.module';
 
 describe('User controller', () => {
   let app: INestApplication;
@@ -14,9 +11,7 @@ describe('User controller', () => {
 
   beforeEach(async () => {
     const moduleRef: TestingModule = await Test.createTestingModule({
-      imports: [DatabaseModule, ConfigModule],
-      controllers: [UserController],
-      providers: [UserService, UserRepository],
+      imports: [AppModule],
     }).compile();
 
     app = moduleRef.createNestApplication();
