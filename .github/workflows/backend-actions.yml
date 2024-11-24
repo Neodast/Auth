@@ -43,6 +43,14 @@ jobs:
             sleep 1
           done
 
+      - name: Generate
+        run: npx drizzle-kit generate
+        working-directory: ./backend
+
+      - name: Migrate
+        run: npx drizzle-kit migrate
+        working-directory: ./backend
+
       - name: Seed the Database
         run: npm run db:seed
         working-directory: ./backend
