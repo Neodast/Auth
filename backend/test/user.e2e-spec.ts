@@ -31,6 +31,7 @@ describe('User controller', () => {
       .expect(200)
       .then(async (res: request.Response) => {
         const users: UserDto[] = res.body;
+        console.log(users[0]);
         expect(users[0].id).toBeDefined();
         expect(users).toEqual(await userController.findAll());
       });
