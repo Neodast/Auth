@@ -7,8 +7,6 @@ import { ConfigModule } from '@src/config/config.module';
 import { UserService } from '../src/user/user.service';
 import { UserRepository } from '../src/user/user.repository';
 import { UserDto } from '@src/user/dtos/user.dto';
-import { DATABASE } from '@src/database/constants/database.constant';
-import { DrizzleDB } from '@src/database/types/drizzle-db.type';
 
 describe('User controller', () => {
   let app: INestApplication;
