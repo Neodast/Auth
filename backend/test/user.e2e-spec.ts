@@ -6,12 +6,15 @@ import { DatabaseModule } from '@src/database/database.module';
 import { ConfigModule } from '@src/config/config.module';
 import { UserService } from '../src/user/user.service';
 import { UserRepository } from '../src/user/user.repository';
+import { UserDto } from '@src/user/dtos/user.dto';
+import { DATABASE } from '@src/database/constants/database.constant';
+import { DrizzleDB } from '@src/database/types/drizzle-db.type';
 
 describe('User controller', () => {
   let app: INestApplication;
   let userController: UserController;
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     const moduleRef: TestingModule = await Test.createTestingModule({
       imports: [DatabaseModule, ConfigModule],
       controllers: [UserController],
@@ -25,13 +28,17 @@ describe('User controller', () => {
   });
 
   it(`/GET users`, async () => {
-    const response = await request(await app.getHttpServer())
+    return await request(await app.getHttpServer())
       .get('/users')
-      .expect(200);
-    expect(response.body).toEqual(await userController.findAll());
+      .expect(200)
+      .then(async (res: request.Response) => {
+        const users: UserDto[] = res.body;
+        expect(users[0].id).toBeDefined();
+        expect(users).toEqual(await userController.findAll());
+      });
   });
 
-  afterAll(async () => {
+  afterEach(async () => {
     await app.close();
   });
 });

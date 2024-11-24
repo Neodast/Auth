@@ -20,7 +20,11 @@ export class UserController {
 
   @Get()
   async findAll() {
-    return await this.userService.findAll();
+    try {
+      return await this.userService.findAll();
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   @Get('/profile')

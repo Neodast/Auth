@@ -1,27 +1,26 @@
-import { Inject, Injectable } from '@nestjs/common';
-import {
-  DATABASE,
-  DEFAULT_LIMIT,
-  DEFAULT_OFFSET,
-} from './constants/database.constant';
-import { DrizzleDB } from './types/drizzle-db.type';
+import { Injectable } from '@nestjs/common';
+import { DEFAULT_LIMIT, DEFAULT_OFFSET } from './constants/database.constant';
 import { Reflector } from '@nestjs/core';
 import { SCHEMA_NAME } from './decorators/schema-name.decorator';
 import { and, asc, desc, eq } from 'drizzle-orm';
 import { DatabaseParams } from './dtos/db-params.dto';
 import { ConditionDto } from './dtos/condition.dto';
+import { DatabaseService } from './database.service';
+import { DrizzleDB } from './types/drizzle-db.type';
 
 @Injectable()
 export class Repository {
   protected schemaName?: string;
   protected schema: any;
+  protected db: DrizzleDB;
 
   constructor(
-    @Inject(DATABASE) private db: DrizzleDB,
+    private databaseService: DatabaseService,
     private reflector: Reflector,
   ) {}
 
   onModuleInit() {
+    this.db = this.databaseService.db;
     this.schemaName = this.reflector.get<string>(SCHEMA_NAME, this.constructor);
     this.schema = this.db._.fullSchema[this.schemaName];
   }
