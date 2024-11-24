@@ -26,7 +26,7 @@ describe('User service', () => {
     userController = moduleRef.get<UserController>(UserController);
   });
 
-  describe('findAll', () => {
+  describe('findAll', async () => {
     it('Should return an array of users', async () => {
       const result: UserDto[] = [
         {
